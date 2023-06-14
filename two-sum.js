@@ -5,6 +5,7 @@ const cases = {
 }
 
 var twoSum = function (nums, target) {
+  // 使用字典查表
   const dic = {}
   for (let i = 0; i < nums.length; i++) {
     index = target - nums[i]
