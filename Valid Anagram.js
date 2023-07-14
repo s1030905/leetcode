@@ -35,7 +35,8 @@ var isAnagram = function (s, t) {
     if (counterT[t.charCodeAt(i)] >= 0) {
       counterT[t.charCodeAt(i)] += 1;
     } else {
-      counterT[t.charCodeAt(i)] = 1;
+      console.log(t.charCodeAt(i));
+      counterT[t[i].charCodeAt()] = 1;
     }
   }
   for (let i = 0; i < s.length; i++) {
