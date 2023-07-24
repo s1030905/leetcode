@@ -13,6 +13,7 @@ const cases = {
   },
 };
 var search = function (nums, target) {
+  // binary
   let left = 0;
   let right = nums.length - 1;
   while (left <= right) {
@@ -20,17 +21,23 @@ var search = function (nums, target) {
     if (target === nums[mid]) {
       return mid;
     }
+    // 如果mid左邊是sorted array
     if (nums[left] <= nums[mid]) {
+      // 如果 target值 介於 左邊 array 範圍中
       if (target >= nums[left] && target <= nums[mid]) {
         right = mid - 1;
+        // 如果 target值 不介於 左邊 array 範圍中
       } else {
         left = mid + 1;
       }
     }
+    // 如果mid右邊是sorted array
     if (nums[right] >= nums[mid]) {
+      // 如果 target值 介於 右邊 array 範圍中
       if (target >= nums[mid] && target <= nums[right]) {
         left = mid + 1;
       } else {
+        // 如果 target值 不介於 右邊 array 範圍中
         right = mid - 1;
       }
     }

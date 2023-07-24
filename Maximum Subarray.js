@@ -13,12 +13,15 @@ const maxSubArray = function (nums) {
   let sum = nums[0];
   for (let i = 1; i < nums.length; i++) {
     sum += nums[i];
+    // 決定是否更新最大值
     if (sum > max) {
       max = sum;
     }
+    // 目前單一元素值 大於 sum => 更新start
     if (nums[i] > sum) {
       start = nums[i];
       sum = nums[i];
+      // 決定是否更新最大值
       if (sum > max) {
         max = nums[i];
       }
