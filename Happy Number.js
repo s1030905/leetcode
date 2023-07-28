@@ -1,22 +1,17 @@
-var isHappy = function (n) {
-  let total = sum(n);
-  let dic = new Set();
-  while (total !== 1) {
-    if (dic.has(total)) {
-      return false;
-    } else {
-      dic.add(total);
-      total = sum(total);
-    }
+var isHappy = function (n, hash = {}) {
+  // 將數字轉換成字串，方便計算
+  if (n === 1) return true;
+  const str = n.toString();
+  let sum = 0;
+  for (const i of str) {
+    sum += Number(i);
   }
-  if (total === 1) return true;
-  function sum(n) {
-    let total = 0;
-    n = n.toString();
-    for (const i of n) {
-      total += Number(i) ** 2;
-    }
-    return total;
+  // 如果已在hash裡代表循環了 return false
+  if (sum in hash) {
+    return false;
+  } else {
+    hash[sum] = 1;
   }
+  return isHappy(sum, hash);
 };
 console.log(isHappy(2));
