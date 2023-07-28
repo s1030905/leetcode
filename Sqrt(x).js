@@ -1,19 +1,13 @@
 var mySqrt = function (x) {
-  let n = x;
-  let m = n;
-  while (n ** 2 >= x) {
-    if (n === 1) return 1;
-    if (Math.floor(n / 2) ** 2 === x) return Math.floor(n / 2);
-    else if (Math.floor(n / 2) ** 2 > x) {
-      n = Math.floor(n / 2) + 1;
-      m = n;
-    } else if (Math.floor(m) ** 2 > x) {
-      n--;
-      m = n;
-    }
+  // 邊界條件
+  if (x < 2) return x;
+  let ans = x;
+  while (ans ** 2 >= x) {
+    // 用 / 2的方式快速逼近答案
+    if (Math.floor(ans / 2) ** 2 === x) return Math.floor(ans / 2);
+    // 若ans次方小於x則改為遞減逼近答案
+    ans = Math.floor(ans / 2) ** 2 > x ? Math.floor(ans / 2) : ans - 1;
   }
-  return n;
+  return ans;
 };
-console.log(mySqrt(9));
-// Input: x = 4, Output: 2
-// Input: x = 8, Output: 2
+console.log(mySqrt(8456411));

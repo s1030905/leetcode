@@ -34,20 +34,43 @@ const cases = {
 // console.log(searchInsert([1, 3, 5, 6], 0));
 
 // 第 2 次 => binary
+// var searchInsert = function (nums, target) {
+//   let left = 0;
+//   let right = nums.length - 1;
+//   while (left <= right) {
+//     mid = Math.floor((left + right) / 2);
+//     if (target > nums[mid]) {
+//       left = mid + 1;
+//     } else if (target < nums[mid]) {
+//       right = mid - 1;
+//     } else {
+//       return mid;
+//     }
+//   }
+//   if (nums[mid] < target) return mid + 1;
+//   if (nums[mid] > target) return mid;
+// };
+// console.log(searchInsert([1, 3, 5, 6], 0));
+
+// 第 3 次 => binary
 var searchInsert = function (nums, target) {
-  let left = 0;
-  let right = nums.length - 1;
+  // 邊界條件
+  if (target < nums[0]) return 0;
+  if (target > nums[nums.length - 1]) return nums.length;
+  let [left, right] = [0, nums.length - 1];
+
+  // binary
   while (left <= right) {
-    mid = Math.floor((left + right) / 2);
+    let mid = Math.floor((left + right) / 2);
     if (target > nums[mid]) {
       left = mid + 1;
     } else if (target < nums[mid]) {
       right = mid - 1;
-    } else {
+    } else if (target === nums[mid]) {
       return mid;
     }
   }
-  if (nums[mid] < target) return mid + 1;
-  if (nums[mid] > target) return mid;
+  // 插入index
+  return left;
 };
-console.log(searchInsert([1, 3, 5, 6], 0));
+console.log(searchInsert([1, 3, 5, 6], 8));

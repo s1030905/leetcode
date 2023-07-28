@@ -3,23 +3,15 @@ const cases = {
   case2: [4, 1, 2, 1, 2],
   case3: [1],
 };
-
-// 第 1 次
+// 利用位元比較及XOR特性
 var singleNumber = function (nums) {
-  const dic = {};
-  for (const i of nums) {
-    if (i in dic) {
-      dic[i] += 1;
-    } else {
-      dic[i] = 1;
-    }
+  // 0000 避免汙染、初始化
+  let uniqNum = 0;
+  // 逐一比較
+  for (let idx = 0; idx < nums.length; idx++) {
+    // 當兩個數重複時會完全變成0000，若不一樣則會根據XOR合併成新數，只會留下不同的
+    uniqNum = nums[idx] ^ uniqNum;
   }
-  console.log(dic);
-  // const key = Object.keys(dic).find((k) => dic[k] === 1);
-  for (const i in dic) {
-    if (dic[i] === 1) {
-      return i;
-    }
-  }
+  return uniqNum;
 };
-console.log(singleNumber(cases.case3));
+console.log(singleNumber([2, 2, 1]));
